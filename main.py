@@ -1,16 +1,13 @@
 def on_button_pressed_a():
     global timer
-    timer = 0
     basic.clear_screen()
+    radio.send_string("tealy")
+    timer = 0
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
 def on_received_string(receivedString):
-    pass
-radio.on_received_string(on_received_string)
-
-def on_button_pressed_a():
     global timer
-    timer = 0
+    basic.show_string(receivedString)
     basic.show_leds("""
         . . . . .
         # . . . #
@@ -18,7 +15,8 @@ def on_button_pressed_a():
         # . . . #
         . # # # .
         """)
-input.on_button_pressed(Button.A, on_button_pressed_a)
+    timer = 0
+radio.on_received_string(on_received_string)
 
 def on_button_pressed_b():
     control.reset()
@@ -38,6 +36,7 @@ def on_gesture_shake():
 input.on_gesture(Gesture.SHAKE, on_gesture_shake)
 
 timer = 0
+timer = 0
 basic.show_leds("""
     . . . . .
     . . . . .
@@ -45,6 +44,7 @@ basic.show_leds("""
     . . . . .
     . . . . .
     """)
+radio.set_group(1)
 
 def on_forever():
     global timer
